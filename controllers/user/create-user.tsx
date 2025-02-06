@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 export const userRouter = Router();
 import { Prisma } from "@prisma/client";
-import { prisma } from "..";
+import { prisma } from "../..";
 
 userRouter.get("/", async (req: Request, res: Response) => {});
 
