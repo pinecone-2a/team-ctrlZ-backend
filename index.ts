@@ -1,9 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 export const prisma = new PrismaClient();
 import express, { Request, Response } from "express";
-import { userRouter } from "./controllers/user/create-user";
+
 import { bankCardRouter } from "./controllers/bank-card/create-bankcard";
-import { profileRouter } from "./controllers/profile/create-profile";
+import { userRouter } from "./routers/user";
+import { profileRouter } from "./routers/profile";
+
 const cors = require("cors");
 const PORT = 4000;
 const app = express();
