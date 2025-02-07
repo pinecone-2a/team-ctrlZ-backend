@@ -1,11 +1,11 @@
-import { Request, Response, Router } from "express";
-export const profileRouter = Router();
-import { Prisma } from "@prisma/client";
+import { Request, Response } from "express";
 import { prisma } from "../..";
 
-profileRouter.get("/", async (req: Request, res: Response) => {});
+export const fetchProfile = async (req: Request, res: Response) => {
+  // const profile = await prisma.profile.findUnique
+};
 
-profileRouter.post("/", async (req: Request, res: Response) => {
+export const createProfile = async (req: Request, res: Response) => {
   const {
     name,
     about,
@@ -28,5 +28,7 @@ profileRouter.post("/", async (req: Request, res: Response) => {
       },
     });
     res.json(newProfile);
-  } catch {}
-});
+  } catch (e) {
+    res.send(e);
+  }
+};

@@ -1,11 +1,8 @@
 import { Request, Response, Router } from "express";
 export const bankCardRouter = Router();
-import { Prisma } from "@prisma/client";
 import { prisma } from "../..";
 
-bankCardRouter.get("/", async (req: Request, res: Response) => {});
-
-bankCardRouter.post("/", async (req: Request, res: Response) => {
+export const createBankCard = async (req: Request, res: Response) => {
   const { userId, country, firstName, lastName, cardNumber, expiryDate } =
     req.body;
   try {
@@ -21,4 +18,9 @@ bankCardRouter.post("/", async (req: Request, res: Response) => {
     });
     res.json(newUser);
   } catch {}
-});
+};
+
+export const fetchBankCards = async (req: Request, res: Response) => {
+  const bankCards = await prisma.bankCard.findMany();
+  res.json(bankCards);
+};
