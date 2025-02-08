@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 export const prisma = new PrismaClient();
 import express, { Request, Response } from "express";
-import { bankCardRouter } from "./controllers/bank-card/create-bankcard";
+
+import { bankCardRouter } from "./routers/bankcard";
 import { userRouter } from "./routers/user";
 import { profileRouter } from "./routers/profile";
 import dotenv from "dotenv";
@@ -13,7 +14,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/auth/sign-up", userRouter);
+app.use("/sign-up", userRouter);
 app.use("/bank-card", bankCardRouter);
 app.use("/profile", profileRouter);
 
