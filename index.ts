@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 export const prisma = new PrismaClient();
 import express, { Request, Response } from "express";
 
-import { bankCardRouter } from "./controllers/bank-card/create-bankcard";
+import { bankCardRouter } from "./routers/bankcard";
 import { userRouter } from "./routers/user";
 import { profileRouter } from "./routers/profile";
 import dotenv from "dotenv";
