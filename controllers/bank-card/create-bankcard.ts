@@ -23,7 +23,6 @@ export const createBankCard = async (req: Request, res: Response) => {
     res.send(e);
   }
 };
-<<<<<<< HEAD
 export const fetchBankCards = async (req: Request, res: Response) => {
   const { id } = req.params;
   const bankCards = await prisma.bankCard.findUnique({
@@ -33,13 +32,3 @@ export const fetchBankCards = async (req: Request, res: Response) => {
   });
   res.json(bankCards);
 };
-=======
-// export const fetchBankCards = async (req: Request, res: Response) => {
-//   const bankCards = await prisma.bankCard.findUnique({
-//     where: {
-//       id: 1
-//     }
-//   });
-//   res.json(bankCards);
-// };
->>>>>>> 4e1cb9e5c110ee813aee477e6972fdb87910f641
