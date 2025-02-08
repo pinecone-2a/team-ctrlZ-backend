@@ -6,5 +6,5 @@ import {
   fetchProfile,
 } from "../controllers/profile/create-profile";
 
-profileRouter.get("/", fetchProfile);
+profileRouter.get("/:id", fetchProfile);
 profileRouter.post("/", createProfile);

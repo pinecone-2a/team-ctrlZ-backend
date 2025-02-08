@@ -8,7 +8,7 @@ import { profileRouter } from "./routers/profile";
 import dotenv from "dotenv";
 dotenv.config();
 const cors = require("cors");
-const PORT = 4001;
+const PORT = 4000;
 const app = express();
 
 app.use(cors());

@@ -7,4 +7,4 @@ import {
 } from "../controllers/bank-card/create-bankcard";
 
 bankCardRouter.post("/", createBankCard);
-bankCardRouter.get("/", fetchBankCards);
+bankCardRouter.get("/:id", fetchBankCards);

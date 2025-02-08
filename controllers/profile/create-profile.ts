@@ -2,7 +2,13 @@ import { Request, Response } from "express";
 import { prisma } from "../..";
 
 export const fetchProfile = async (req: Request, res: Response) => {
-  // const profile = await prisma.profile.findUnique
+  const { id } = req.params;
+  const profile = await prisma.profile.findUnique({
+    where: {
+      userId: id,
+    },
+  });
+  res.json(profile);
 };
 
 export const createProfile = async (req: Request, res: Response) => {
