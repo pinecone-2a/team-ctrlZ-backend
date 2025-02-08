@@ -10,7 +10,7 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(nanoid())
   email String @unique
   password String
   username String @unique
@@ -22,19 +22,19 @@ model User {
   updatedAt DateTime @updatedAt
 } 
 model BankCard {
-  id Int @id @default(autoincrement())
+  id String @id @default(nanoid())
   country String
   firstName String
   lastName String
   cardNumber String @db.VarChar(19)
   expiryDate DateTime
-  userId Int @unique
+  userId String @unique
   user User @relation(fields: [userId],references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 model Profile {
-  id Int @id @default(autoincrement())
+  id String @id @default(nanoid())
   name String
   about String
   avatarImage String
@@ -42,18 +42,18 @@ model Profile {
   backgroundImage String
   successMessage String
   user User @relation(fields: [userId], references: [id])
-  userId Int @unique
+  userId String @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 model Donation {
-  id Int @id @default(autoincrement())
+  id String @id @default(nanoid())
   amount Int
   specialMessage String
   socialURLOrBuyMeACoffee String
-  recipentId Int 
+  recipentId String 
   recipient User @relation("RecipientDonations", fields: [recipentId], references: [id])
-  donorId Int 
+  donorId String 
   donor User @relation("DonorDonations", fields: [donorId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
