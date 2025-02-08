@@ -1,5 +1,6 @@
 import { Request, Response, Router } from "express";
 import { prisma } from "../..";
+import e from "cors";
 
 export const createUser = async (req: Request, res: Response) => {
   const { email, password, username } = req.body;
@@ -12,7 +13,10 @@ export const createUser = async (req: Request, res: Response) => {
       },
     });
     res.json(newUser);
-  } catch {}
+  } catch (e) {
+    res.send(e);
+    console.log(e);
+  }
 };
 export const fetchUsers = async (req: Request, res: Response) => {
   const users = await prisma.user.findMany();
