@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 import { prisma } from "../..";
 
-export const createUser = async (req: Request, res: Response) => {
+export const createDonation = async (req: Request, res: Response) => {
   const {
     amount,
     specialMessage,
@@ -25,8 +25,12 @@ export const createUser = async (req: Request, res: Response) => {
     console.log(e);
   }
 };
-// export const fetchReceivedDonation = async (req: Request, res: Response) => {
-//     const {id}=
-//   const users = await prisma.user.findUnique();
-//   res.json(users);
-// };
+export const fetchReceivedDonation = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const receivedDonation = await prisma.donation.findMany({
+    where: {
+      donorId: id,
+    },
+  });
+  res.json(receivedDonation);
+};

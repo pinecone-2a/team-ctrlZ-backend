@@ -15,6 +15,7 @@
     "express": "^4.21.2",
     "lottie": "^0.0.1",
     "nanoid": "^5.0.9",
+    "node-fetch": "^3.3.2",
     "nodemon": "^3.1.9"
   },
   "devDependencies": {
