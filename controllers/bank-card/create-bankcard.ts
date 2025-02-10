@@ -4,8 +4,7 @@ import { prisma } from "../..";
 
 export const createBankCard = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { userId, country, firstName, lastName, cardNumber, expiryDate } =
-    req.body;
+  const { country, firstName, lastName, cardNumber, expiryDate } = req.body;
   try {
     const newBankcard = await prisma.bankCard.create({
       data: {
@@ -14,7 +13,7 @@ export const createBankCard = async (req: Request, res: Response) => {
         lastName,
         cardNumber,
         expiryDate: new Date(expiryDate),
-        userId,
+        userId: id,
       },
     });
     res.json(newBankcard);
