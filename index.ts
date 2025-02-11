@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/sign-up", userRouter);
+app.use("/auth", userRouter);
 app.use("/bank-card", bankCardRouter);
 app.use("/profile", profileRouter);
 app.use("/donation", donationRouter);
