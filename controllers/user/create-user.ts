@@ -5,6 +5,22 @@ const bcrypt = require("bcrypt");
 export const createUser = async (req: Request, res: Response) => {
   const { email, password, username } = req.body;
   const saltRounds = 10;
+
+  const isUserExist = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (isUserExist) {
+    res.status(409).json({
+      success: false,
+      code: "USER_ALREADY_EXISTS",
+      messega: "User already exists",
+      data: null,
+    });
+  }
+
   const hashedPass = bcrypt.hashSync(password, saltRounds);
   try {
     const newUser = await prisma.user.create({
@@ -17,7 +33,7 @@ export const createUser = async (req: Request, res: Response) => {
     res.status(201).json({
       success: true,
       code: "SUCCESS",
-      messega: "User created successfully",
+      message: "User created successfully",
       data: newUser,
     });
   } catch (e) {
