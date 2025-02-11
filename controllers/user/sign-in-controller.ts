@@ -12,7 +12,7 @@ export const signinController = async (req: Request, res: Response) => {
     res.status(409).json({
       success: false,
       code: "User doesn't exist",
-      messega: "USER_DOESNT_EXIST",
+      message: "USER_DOESNT_EXIST",
       data: null,
     });
     return;
