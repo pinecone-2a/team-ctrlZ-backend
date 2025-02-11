@@ -17,24 +17,25 @@ export const signinController = async (req: Request, res: Response) => {
     });
     return;
   }
-
-  const isValid = bcrypt.compareSync(password, user.password);
-  if (isValid) {
-    res.json({
-      success: true,
-      code: "Succesfully signed in",
-      messega: "Signed in",
-      data: {},
-    });
-    return;
-  }
-  if (!isValid) {
-    res.json({
-      success: false,
-      code: "Incorrect Password",
-      messega: "PASSWORD_INCORRECT",
-      data: null,
-    });
-    return;
+  if (user) {
+    const isValid = bcrypt.compareSync(password, user.password);
+    if (isValid) {
+      res.json({
+        success: true,
+        code: "Succesfully signed in",
+        messega: "Signed in",
+        data: {},
+      });
+      return;
+    }
+    if (!isValid) {
+      res.json({
+        success: false,
+        code: "Incorrect Password",
+        messega: "PASSWORD_INCORRECT",
+        data: null,
+      });
+      return;
+    }
   }
 };
