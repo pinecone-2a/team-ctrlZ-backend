@@ -23,7 +23,7 @@ export const signinController = async (req: Request, res: Response) => {
       res.json({
         success: true,
         code: "Succesfully signed in",
-        messega: "Signed in",
+        message: "Signed in",
         data: {},
       });
       return;
@@ -32,7 +32,7 @@ export const signinController = async (req: Request, res: Response) => {
       res.json({
         success: false,
         code: "Incorrect Password",
-        messega: "PASSWORD_INCORRECT",
+        message: "PASSWORD_INCORRECT",
         data: null,
       });
       return;

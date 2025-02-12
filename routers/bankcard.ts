@@ -5,8 +5,8 @@ import {
   createBankCard,
 } from "../controllers/bank-card/create-bankcard";
 import { editBankCard } from "../controllers/bank-card/edit-bankcard";
-import { fetchBankCards } from "../controllers/bank-card/fetch-bankcard";
+import { fetchBankCard } from "../controllers/bank-card/fetch-bankcard";
 
 bankCardRouter.post("/:id", createBankCard);
-bankCardRouter.get("/:id", fetchBankCards);
+bankCardRouter.get("/:id", fetchBankCard);
 bankCardRouter.patch("/:bankCardId",editBankCard) 
