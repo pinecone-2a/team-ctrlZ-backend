@@ -3,8 +3,9 @@ export const profileRouter = Router();
 
 import {
   createProfile,
-  fetchProfile,
 } from "../controllers/profile/create-profile";
+import { fetchCurrentUser } from "../controllers/profile/get-current-user";
 
-profileRouter.get("/:id", fetchProfile);
-profileRouter.post("/", createProfile);
+profileRouter.get("/:id", fetchCurrentUser);
+// profileRouter.get("/view/:username",fetchUsers)
+profileRouter.post("/:id", createProfile);
