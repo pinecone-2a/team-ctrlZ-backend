@@ -1,6 +1,8 @@
 import { prisma } from "../..";
 import { Request, Response } from "express";
 const bcrypt = require("bcrypt");
+import jwt from "jsonwebtoken";
+import { generateAccessToken } from "./generateAccessToken";
 export const signinController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await prisma.user.findUnique({
@@ -20,22 +22,37 @@ export const signinController = async (req: Request, res: Response) => {
   if (user) {
     const isValid = bcrypt.compareSync(password, user.password);
     if (isValid) {
-      res.json({
-        success: true,
-        code: "Succesfully signed in",
-        message: "Signed in",
-        data: {},
-      });
+      const refreshToken = jwt.sign(
+        { userId: user.id },
+        process.env.REFRESH_TOKEN_SECRET!,
+        {
+          expiresIn: "24h",
+        }
+      );
+
+      const accessToken = generateAccessToken(user.id);
+      res
+        .cookie("accessToken", accessToken, {
+          httpOnly: true,
+          sameSite: "strict",
+        })
+        .cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          sameSite: "strict",
+        })
+        .json({
+          success: true,
+          code: "Succesfully signed in",
+          message: "Signed in",
+        });
       return;
     }
-    if (!isValid) {
-      res.json({
-        success: false,
-        code: "Incorrect Password",
-        message: "PASSWORD_INCORRECT",
-        data: null,
-      });
-      return;
-    }
+    res.json({
+      success: false,
+      code: "Incorrect Password",
+      message: "PASSWORD_INCORRECT",
+      data: null,
+    });
+    return;
   }
 };
