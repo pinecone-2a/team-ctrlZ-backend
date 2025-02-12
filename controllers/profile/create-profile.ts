@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { prisma } from "../..";
 export const createProfile = async (req: Request, res: Response) => {
+  const { id } = req.params;
   const {
     name,
     about,
@@ -8,7 +9,6 @@ export const createProfile = async (req: Request, res: Response) => {
     socialMediaURL,
     backgroundImage,
     successMessage,
-    userId,
   } = req.body;
   try {
     const newProfile = await prisma.profile.create({
@@ -19,7 +19,7 @@ export const createProfile = async (req: Request, res: Response) => {
         socialMediaURL,
         backgroundImage,
         successMessage,
-        userId,
+        userId: id,
       },
     });
     res.json(newProfile);
