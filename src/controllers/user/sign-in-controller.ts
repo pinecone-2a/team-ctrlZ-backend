@@ -3,12 +3,17 @@ const bcrypt = require("bcrypt");
 import jwt from "jsonwebtoken";
 import { generateAccessToken } from "./generateAccessToken";
 import { prisma } from "../..";
+
 export const signinController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await prisma.user.findUnique({
     where: {
       email,
     },
+    include : {
+      profile:true,
+      bankCard:true
+    }
   });
   if (!user) {
     res.status(409).json({
@@ -44,6 +49,7 @@ export const signinController = async (req: Request, res: Response) => {
           success: true,
           code: "Succesfully signed in",
           message: "Signed in",
+          data:user
         });
       return;
     }
