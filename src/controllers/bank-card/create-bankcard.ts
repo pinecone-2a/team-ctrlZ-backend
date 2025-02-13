@@ -1,5 +1,4 @@
 import { Request, Response, Router } from "express";
-
 import { prisma } from "../..";
 
 export const createBankCard = async (req: Request, res: Response) => {

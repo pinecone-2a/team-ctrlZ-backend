@@ -7,12 +7,13 @@ import { userRouter } from "./routers/user";
 import { profileRouter } from "./routers/profile";
 import dotenv from "dotenv";
 import { donationRouter } from "./routers/donation";
+import cors from "cors";
 dotenv.config();
-const cors = require("cors");
+
 const PORT = 4000;
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3002", credentials: true }));
 app.use(express.json());
 
 app.use("/auth", userRouter);

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { prisma } from "../..";
+
 export const createProfile = async (req: Request, res: Response) => {
   const { id } = req.params;
   const {

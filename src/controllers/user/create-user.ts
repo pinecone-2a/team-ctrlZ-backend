@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import { prisma } from "../..";
-import e from "cors";
+
 const bcrypt = require("bcrypt");
 
 const isUserexist = async (field: any) => {
