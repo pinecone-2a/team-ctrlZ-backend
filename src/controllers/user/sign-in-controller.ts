@@ -33,11 +33,11 @@ export const signinController = async (req: Request, res: Response) => {
       const accessToken = generateAccessToken(user.id);
       res
         .cookie("accessToken", accessToken, {
-          httpOnly: true,
+          // httpOnly: true,
           sameSite: "strict",
         })
         .cookie("refreshToken", refreshToken, {
-          httpOnly: true,
+          // httpOnly: true,
           sameSite: "strict",
         })
         .json({

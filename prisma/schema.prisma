@@ -39,8 +39,8 @@ model Profile {
   about           String
   avatarImage     String
   socialMediaURL  String
-  backgroundImage String
-  successMessage  String
+  backgroundImage String?
+  successMessage  String?
   userId          String   @unique
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt

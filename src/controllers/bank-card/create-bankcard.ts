@@ -4,6 +4,7 @@ import { prisma } from "../..";
 export const createBankCard = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { country, firstName, lastName, cardNumber, expiryDate } = req.body;
+
   try {
     const newBankcard = await prisma.bankCard.create({
       data: {

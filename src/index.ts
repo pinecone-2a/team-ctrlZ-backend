@@ -13,7 +13,13 @@ dotenv.config();
 const PORT = 4000;
 const app = express();
 
-app.use(cors({ origin: "http://localhost:3002", credentials: true }));
+app.use(
+  cors({
+    origin: "http://localhost:3002",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 app.use(express.json());
 
 app.use("/auth", userRouter);
