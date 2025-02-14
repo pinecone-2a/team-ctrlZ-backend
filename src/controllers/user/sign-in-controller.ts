@@ -10,10 +10,10 @@ export const signinController = async (req: Request, res: Response) => {
     where: {
       email,
     },
-    include : {
-      profile:true,
-      bankCard:true
-    }
+    include: {
+      profile: true,
+      bankCard: true,
+    },
   });
   if (!user) {
     res.status(409).json({
@@ -49,7 +49,7 @@ export const signinController = async (req: Request, res: Response) => {
           success: true,
           code: "Succesfully signed in",
           message: "Signed in",
-          data:user
+          data: user,
         });
       return;
     }
