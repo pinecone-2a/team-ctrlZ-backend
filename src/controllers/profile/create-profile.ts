@@ -1,20 +1,9 @@
 import { Request, Response } from "express";
 import { prisma } from "../..";
 
-export const fetchProfile = async (req: Request, res: Response) => {
-  // const profile = await prisma.profile.findUnique
-};
-
 export const createProfile = async (req: Request, res: Response) => {
-  const {
-    name,
-    about,
-    avatarImage,
-    socialMediaURL,
-    backgroundImage,
-    successMessage,
-    userId,
-  } = req.body;
+  const { id } = req.params;
+  const { name, about, avatarImage, socialMediaURL } = req.body;
   try {
     const newProfile = await prisma.profile.create({
       data: {
@@ -22,12 +11,15 @@ export const createProfile = async (req: Request, res: Response) => {
         about,
         avatarImage,
         socialMediaURL,
-        backgroundImage,
-        successMessage,
-        userId,
+        userId: id,
       },
     });
-    res.json(newProfile);
+    res.status(201).json({
+      code: "PROFILE_CREATED_SUCCESSFULLY",
+      success: true,
+      message: "Profile created successfully",
+      data: newProfile,
+    });
   } catch (e) {
     res.send(e);
   }

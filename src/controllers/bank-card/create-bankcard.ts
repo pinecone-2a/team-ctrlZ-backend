@@ -1,11 +1,20 @@
 import { Request, Response, Router } from "express";
-
 import { prisma } from "../..";
+
+export const fetchBankCards = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const bankCards = await prisma.bankCard.findUnique({
+    where: {
+      userId: id,
+    },
+  });
+  res.json(bankCards);
+};
 
 export const createBankCard = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { userId, country, firstName, lastName, cardNumber, expiryDate } =
-    req.body;
+  const { country, firstName, lastName, cardNumber, expiryDate } = req.body;
+
   try {
     const newBankcard = await prisma.bankCard.create({
       data: {
@@ -14,7 +23,7 @@ export const createBankCard = async (req: Request, res: Response) => {
         lastName,
         cardNumber,
         expiryDate: new Date(expiryDate),
-        userId,
+        userId: id,
       },
     });
     res.json(newBankcard);
@@ -22,8 +31,4 @@ export const createBankCard = async (req: Request, res: Response) => {
     console.log(e);
     res.send(e);
   }
-};
-export const fetchBankCards = async (req: Request, res: Response) => {
-  const bankCards = await prisma.bankCard.findMany();
-  res.json(bankCards);
 };
