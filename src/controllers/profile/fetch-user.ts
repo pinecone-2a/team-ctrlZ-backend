@@ -3,13 +3,11 @@ import { prisma } from "../..";
 
 export const fetchUser = async (req: Request, res: Response) => {
   try {
-    const { username } = req.params;
-    const user = await prisma.user.findUnique({
+    const name = req.params.username;
+    console.log(name);
+    const user = await prisma.profile.findMany({
       where: {
-        username,
-      },
-      include: {
-        profile: true,
+        name,
       },
     });
     if (!user) {
