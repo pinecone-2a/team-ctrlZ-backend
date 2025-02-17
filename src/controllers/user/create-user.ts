@@ -42,12 +42,8 @@ export const createUser = async (req: Request, res: Response) => {
       );
       const accessToken = generateAccessToken(newUser.id);
       res
-        .cookie("accessToken", accessToken, {
-          sameSite: "strict",
-        })
-        .cookie("refreshToken", refreshToken, {
-          sameSite: "strict",
-        })
+        .cookie("accessToken", accessToken)
+        .cookie("refreshToken", refreshToken)
         .status(201)
         .json({
           success: true,
