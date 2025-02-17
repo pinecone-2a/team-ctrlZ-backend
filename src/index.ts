@@ -18,6 +18,7 @@ app.use(
     origin: [
       "https://team-ctrl-z-frontend.vercel.app/",
       "http://localhost:3000",
+      "https://team-ctrl-z-frontend-git-main-amgaas-projects-5eeb5f97.vercel.app/",
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
