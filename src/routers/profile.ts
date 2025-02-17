@@ -9,7 +9,6 @@ import { fetchAllusers } from "../controllers/profile/fetch-allUsers";
 import { addBackground } from "../controllers/profile/add-backgroundImage";
 
 profileRouter.put("/:userId", addBackground);
-
 profileRouter.get("/explore", fetchAllusers);
 profileRouter.get("/:id", fetchCurrentUser);
 profileRouter.get("/view/:username", fetchUser);
