@@ -15,7 +15,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://team-ctrl-z-frontend.vercel.app/",
+    origin: [
+      "https://team-ctrl-z-frontend.vercel.app/",
+      "http://localhost:3000",
+    ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
