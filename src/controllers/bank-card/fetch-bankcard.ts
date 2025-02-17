@@ -10,5 +10,4 @@ export const fetchBankCard = async (req: Request, res: Response) => {
       },
     });
     res.json(bankCards);
-  };
-  
+  };      
