@@ -1,5 +1,7 @@
 import { Request, Response, Router } from "express";
 import { prisma } from "../..";
+import jwt from "jsonwebtoken";
+import { generateAccessToken } from "./generateAccessToken";
 
 const bcrypt = require("bcrypt");
 
@@ -31,12 +33,28 @@ export const createUser = async (req: Request, res: Response) => {
           username,
         },
       });
-      res.status(201).json({
-        success: true,
-        code: "SUCCESS",
-        message: "User created successfully",
-        data: newUser,
-      });
+      const refreshToken = jwt.sign(
+        { userId: newUser.id },
+        process.env.REFRESH_TOKEN_SECRET!,
+        {
+          expiresIn: "24h",
+        }
+      );
+      const accessToken = generateAccessToken(newUser.id);
+      res
+        .cookie("accessToken", accessToken, {
+          sameSite: "strict",
+        })
+        .cookie("refreshToken", refreshToken, {
+          sameSite: "strict",
+        })
+        .status(201)
+        .json({
+          success: true,
+          code: "SUCCESS",
+          message: "User created successfully",
+          data: newUser,
+        });
     } catch (e) {
       res.send(e);
       console.log(e);
