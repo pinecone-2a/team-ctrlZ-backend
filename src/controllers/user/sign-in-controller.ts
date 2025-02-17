@@ -37,8 +37,14 @@ export const signinController = async (req: Request, res: Response) => {
 
       const accessToken = generateAccessToken(user.id);
       res
-        .cookie("accessToken", accessToken)
-        .cookie("refreshToken", refreshToken)
+        .cookie("accessToken", accessToken, {
+          sameSite: "none",
+          secure: true,
+        })
+        .cookie("refreshToken", refreshToken, {
+          secure: true,
+          sameSite: "none",
+        })
         .json({
           success: true,
           code: "Succesfully signed in",
