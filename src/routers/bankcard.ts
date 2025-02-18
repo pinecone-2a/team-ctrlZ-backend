@@ -9,4 +9,4 @@ import { fetchBankCard } from "../controllers/bank-card/fetch-bankcard";
 
 bankCardRouter.post("/:id", createBankCard);
 bankCardRouter.get("/:id", fetchBankCard);
-bankCardRouter.patch("/:bankCardId",editBankCard) 
+bankCardRouter.patch("/:id",editBankCard) 
