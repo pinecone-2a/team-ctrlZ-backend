@@ -7,7 +7,7 @@ export const editBankCard = async (req: Request, res: Response) => {
     const { country, firstName, lastName, cardNumber, expiryDate } = req.body;
 
     if (!bankCardId) {
-      return res.status(400).json({ message: "Bank Card ID is required" });
+      res.status(400).json({ message: "Bank Card ID is required" });
     }
 
     const updatedBankcard = await prisma.bankCard.update({
@@ -20,16 +20,14 @@ export const editBankCard = async (req: Request, res: Response) => {
         lastName,
         cardNumber,
         expiryDate: new Date(expiryDate),
-      }
+      },
     });
 
-    return res.json({
+    res.json({
       message: "Bank card updated successfully!",
-      data: updatedBankcard
+      data: updatedBankcard,
     });
-  }
-
-  catch(e) {
-    res.send(e)
+  } catch (e) {
+    res.send(e);
   }
 };
