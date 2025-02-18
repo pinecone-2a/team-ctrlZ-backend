@@ -2,12 +2,13 @@ import { PrismaClient } from "@prisma/client";
 export const prisma = new PrismaClient();
 import express, { Request, Response } from "express";
 
-import { bankCardRouter } from "./routers/bankcard";
+
 import { userRouter } from "./routers/user";
 import { profileRouter } from "./routers/profile";
 import dotenv from "dotenv";
 import { donationRouter } from "./routers/donation";
 import cors from "cors";
+import bankCardRouter from "./routers/bankcard";
 dotenv.config();
 
 const PORT = 4000;
@@ -15,7 +16,13 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    // origin: [
+    //   "https://team-ctrl-z-frontend.vercel.app/",
+    //   "http://localhost:3000",
+    //   "https://team-ctrl-z-frontend-git-main-amgaas-projects-5eeb5f97.vercel.app/",
+    //   "https://team-ctrl-z-frontend-gmiro3b0p-amgaas-projects-5eeb5f97.vercel.app/",
+    // ],
+    origin: "*",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })

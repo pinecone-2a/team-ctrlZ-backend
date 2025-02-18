@@ -1,15 +1,18 @@
 import { Request, Response, Router } from "express";
-
 import { prisma } from "../..";
 
 export const editBankCard = async (req: Request, res: Response) => {
-try {
-    const { id } = req.params;
+  try {
+    const { bankCardId } = req.params;
     const { country, firstName, lastName, cardNumber, expiryDate } = req.body;
 
-    const updatedCard = await prisma.bankCard.update({
+    if (!bankCardId) {
+      res.status(400).json({ message: "Bank Card ID is required" });
+    }
+
+    const updatedBankcard = await prisma.bankCard.update({
       where: {
-        id,
+        id: bankCardId
       },
       data: {
         country,
@@ -17,18 +20,14 @@ try {
         lastName,
         cardNumber,
         expiryDate: new Date(expiryDate),
-        userId: id,
-      }
+      },
     });
-    res.json(updatedCard);
-    res.send({
-        message: "Bankcard updated succesfully",
-        data :updatedCard
-    });
-}
-catch(e) {
-  console.log(e);
-    res.send(e)
-}
 
+    res.json({
+      message: "Bank card updated successfully!",
+      data: updatedBankcard,
+    });
+  } catch (e) {
+    res.send(e);
+  }
 };
