@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.bankCardRouter = void 0;
+const express_1 = require("express");
+exports.bankCardRouter = (0, express_1.Router)();
+const create_bankcard_1 = require("../controllers/bank-card/create-bankcard");
+const edit_bankcard_1 = require("../controllers/bank-card/edit-bankcard");
+const fetch_bankcard_1 = require("../controllers/bank-card/fetch-bankcard");
+exports.bankCardRouter.post("/:id", create_bankcard_1.createBankCard);
+exports.bankCardRouter.get("/:id", fetch_bankcard_1.fetchBankCard);
+exports.bankCardRouter.patch("/:bankCardId", edit_bankcard_1.editBankCard);

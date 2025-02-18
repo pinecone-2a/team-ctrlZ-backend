@@ -43,10 +43,12 @@ export const createUser = async (req: Request, res: Response) => {
       const accessToken = generateAccessToken(newUser.id);
       res
         .cookie("accessToken", accessToken, {
-          sameSite: "strict",
+          secure: true,
+          sameSite: "none",
         })
         .cookie("refreshToken", refreshToken, {
-          sameSite: "strict",
+          secure: true,
+          sameSite: "none",
         })
         .status(201)
         .json({

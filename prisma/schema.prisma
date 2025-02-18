@@ -31,6 +31,7 @@ model BankCard {
   updatedAt  DateTime @updatedAt
   userId     String   @unique
   user       User     @relation(fields: [userId], references: [id])
+  bankCardId String   @unique
 }
 
 model Profile {

@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.profileRouter = void 0;
+const express_1 = require("express");
+exports.profileRouter = (0, express_1.Router)();
+const create_profile_1 = require("../controllers/profile/create-profile");
+const get_current_user_1 = require("../controllers/profile/get-current-user");
+const fetch_user_1 = require("../controllers/profile/fetch-user");
+const update_profile_1 = require("../controllers/profile/update-profile");
+const fetch_allUsers_1 = require("../controllers/profile/fetch-allUsers");
+const add_backgroundImage_1 = require("../controllers/profile/add-backgroundImage");
+exports.profileRouter.put("/:userId", add_backgroundImage_1.addBackground);
+exports.profileRouter.get("/explore", fetch_allUsers_1.fetchAllusers);
+exports.profileRouter.get("/:id", get_current_user_1.fetchCurrentUser);
+exports.profileRouter.get("/view/:username", fetch_user_1.fetchUser);
+exports.profileRouter.post("/:id", create_profile_1.createProfile);
+exports.profileRouter.put("/:profileId", update_profile_1.updateProfile);
