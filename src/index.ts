@@ -15,12 +15,13 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "https://team-ctrl-z-frontend.vercel.app/",
-      "http://localhost:3000",
-      "https://team-ctrl-z-frontend-git-main-amgaas-projects-5eeb5f97.vercel.app/",
-      "https://team-ctrl-z-frontend-gmiro3b0p-amgaas-projects-5eeb5f97.vercel.app/",
-    ],
+    // origin: [
+    //   "https://team-ctrl-z-frontend.vercel.app/",
+    //   "http://localhost:3000",
+    //   "https://team-ctrl-z-frontend-git-main-amgaas-projects-5eeb5f97.vercel.app/",
+    //   "https://team-ctrl-z-frontend-gmiro3b0p-amgaas-projects-5eeb5f97.vercel.app/",
+    // ],
+    origin: "*",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
