@@ -12,7 +12,7 @@ export const editBankCard = async (req: Request, res: Response) => {
 
     const updatedBankcard = await prisma.bankCard.update({
       where: {
-        id: bankCardId,
+        id: bankCardId
       },
       data: {
         country,
