@@ -3,16 +3,16 @@ import { prisma } from "../..";
 
 export const editBankCard = async (req: Request, res: Response) => {
   try {
-    const { bankCardId } = req.params;
+    const { userId } = req.params;
     const { country, firstName, lastName, cardNumber, expiryDate } = req.body;
 
-    if (!bankCardId) {
+    if (!userId) {
       res.status(400).json({ message: "Bank Card ID is required" });
     }
 
     const updatedBankcard = await prisma.bankCard.update({
       where: {
-        id: bankCardId,
+        userId: userId,
       },
       data: {
         country,
