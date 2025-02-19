@@ -21,7 +21,7 @@ app.use(
       "https://team-ctrl-z-frontend-git-main-amgaas-projects-5eeb5f97.vercel.app/",
       "https://team-ctrl-z-frontend-gmiro3b0p-amgaas-projects-5eeb5f97.vercel.app/",
     ],
-    credentials: true,
+    credentials: false,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
