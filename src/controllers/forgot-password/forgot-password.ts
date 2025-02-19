@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { prisma } from "../..";
 import { Request, Response } from "express";
 const nodemailer = require("nodemailer");
-
+console.log(prisma);
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -35,7 +35,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
         from: '"Buy me coffee" <qteam984@gmail.com>',
         to: email,
         subject: "Buy me a coffee OTP",
-        text: Number(otp),
+        text: String(otp),
       });
 
       res.json({
