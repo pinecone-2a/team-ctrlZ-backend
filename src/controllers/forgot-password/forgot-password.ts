@@ -35,7 +35,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
         from: '"Buy me coffee" <qteam984@gmail.com>',
         to: email,
         subject: "Buy me a coffee OTP",
-        text: String(otp),
+        text: Number(otp),
       });
 
       res.json({
