@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.donationRouter = void 0;
+const express_1 = require("express");
+exports.donationRouter = (0, express_1.Router)();
+const create_donation_1 = require("../controllers/donation/create-donation");
+const fetch_received_donation_1 = require("../controllers/donation/fetch-received-donation");
+const fetch_total_earning_1 = require("../controllers/donation/fetch-total-earning");
+exports.donationRouter.get("/total-earnings/:userId", fetch_total_earning_1.fetchTotalEarnings);
+exports.donationRouter.get("/:id", fetch_received_donation_1.fetchReceivedDonation);
+exports.donationRouter.post("/create-donation", create_donation_1.createDonation);
