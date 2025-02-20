@@ -11,9 +11,9 @@ import { fetchDonorProfile } from "../controllers/profile/get-donor-profile";
 
 profileRouter.get("/donor/:donorId", fetchDonorProfile);
 
+profileRouter.put("/update/:userId", updateProfile);
 profileRouter.put("/:userId", addBackground);
 profileRouter.get("/explore", fetchAllusers);
 profileRouter.get("/:id", fetchCurrentUser);
 profileRouter.get("/view/:username", fetchUser);
 profileRouter.post("/:id", createProfile);
-profileRouter.put("/:profileId", updateProfile);

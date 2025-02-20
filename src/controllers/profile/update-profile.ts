@@ -1,22 +1,28 @@
 import { Request, Response } from "express";
 import { prisma } from "../..";
 export const updateProfile = async (req: Request, res: Response) => {
-  const { profileId } = req.params;
-  const { avatarImage, name, about, socialMediaURL } = req.body;
+  const { userId } = req.params;
+  const { image, name, about, socialMedia } = req.body;
   try {
     const updatedUser = await prisma.profile.update({
       where: {
-        id: profileId,
+        userId,
       },
       data: {
-        avatarImage,
+        avatarImage: image,
         name,
-        about,
-        socialMediaURL,
+        about: about,
+        socialMediaURL: socialMedia,
       },
     });
-    res.json(updatedUser);
+    res.json({
+      success: true,
+      message: "Updated Successfully",
+      code: "PROFILE_UPDATED_SUCCESSFULLY",
+      data: updatedUser,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: error });
+    console.log(error);
   }
 };
