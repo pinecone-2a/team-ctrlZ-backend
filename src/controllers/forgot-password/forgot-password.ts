@@ -3,7 +3,7 @@ import { prisma } from "../..";
 import { Request, Response } from "express";
 
 const nodemailer = require("nodemailer");
-console.log(prisma);
+
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   host: "smtp.gmail.com",
