@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 import jwt from "jsonwebtoken";
 import { generateAccessToken } from "./generateAccessToken";
 import { prisma } from "../..";
-
 export const signinController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await prisma.user.findUnique({
@@ -36,21 +35,14 @@ export const signinController = async (req: Request, res: Response) => {
       );
 
       const accessToken = generateAccessToken(user.id);
-      res
-        .cookie("accessToken", accessToken, {
-          sameSite: "none",
-          secure: true,
-        })
-        .cookie("refreshToken", refreshToken, {
-          secure: true,
-          sameSite: "none",
-        })
-        .json({
-          success: true,
-          code: "Succesfully signed in",
-          message: "Signed in",
-          data: user,
-        });
+      res.json({
+        success: true,
+        code: "Succesfully signed in",
+        message: "Signed in",
+        data: user,
+        result: accessToken,
+        refreshToken,
+      });
       return;
     }
     res.json({
