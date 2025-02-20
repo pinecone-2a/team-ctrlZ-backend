@@ -5,10 +5,13 @@ import { Request, Response } from "express";
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: "Gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     user: "teamctrlz2@gmail.com",
-    pass: "TeamctrlZ12345@",
+    pass: "gjro kfog defk ftfh",
   },
 });
 
@@ -36,7 +39,15 @@ export const forgotPassword = async (req: Request, res: Response) => {
         from: '"Buy me coffee" <teamctrlz2@gmail.com>',
         to: email,
         subject: "Buy me a coffee OTP",
-        text: String(otp),
+        html: `<div style="max-width:600px;margin:20px auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 0 10px rgba(0,0,0,0.1);text-align:center;font-family:Arial,sans-serif;">
+    <div style="font-size:24px;font-weight:bold;color:#ff9900;"> ☕ BuyMeCoffee</div>
+    <h2>Verify Your Email</h2>
+    <p>Use the OTP below to reset your password:</p>
+    <div style="font-size:28px;font-weight:bold;color:#333;background:#f8f8f8;padding:10px 20px;display:inline-block;border-radius:5px;margin:20px 0;">${otp}</div>
+    <p>If you didn't request this, ignore this email.</p>
+    <div style="font-size:12px;color:#777;margin-top:20px;">&copy; 2025 BuyMeCoffee TeamCtrlZ. All rights reserved.</div>
+</div>
+`,
       });
 
       res.json({
