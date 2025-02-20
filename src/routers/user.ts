@@ -8,4 +8,6 @@ import { forgotPassword } from "../controllers/forgot-password/forgot-password";
 userRouter.post("/sign-in", signinController);
 userRouter.post("/sign-up", createUser);
 userRouter.post("/forgot-password", forgotPassword);
-// userRouter.post("/update", forgotPassword);
+
+import { resetpassword } from "../controllers/user/reset-password";
+userRouter.post("/reset-password", resetpassword);
