@@ -40,7 +40,6 @@ export const signinController = async (req: Request, res: Response) => {
         .cookie("accessToken", accessToken, {
           sameSite: "none",
           secure: true,
-          expires: new Date(Date.now() + 100000),
         })
         .cookie("refreshToken", refreshToken, {
           secure: true,
