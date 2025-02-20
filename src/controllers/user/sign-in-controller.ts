@@ -41,7 +41,7 @@ export const signinController = async (req: Request, res: Response) => {
         message: "Signed in",
         data: user,
         result: accessToken,
-        refreshToken,
+        refreshToken: refreshToken,
       });
       return;
     }
