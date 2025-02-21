@@ -8,7 +8,7 @@ import { profileRouter } from "./routers/profile";
 import dotenv from "dotenv";
 import { donationRouter } from "./routers/donation";
 import cors from "cors";
-import { forgotPassword } from "./controllers/forgot-password/forgot-password";
+
 dotenv.config();
 
 const PORT = 4000;
@@ -21,7 +21,7 @@ app.use(
       "https://team-ctrl-z-frontend.vercel.app",
       "http://localhost:3000",
     ],
-    credentials: false,
+    credentials: true,
   })
 );
 app.use(express.json());

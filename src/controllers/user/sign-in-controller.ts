@@ -40,7 +40,7 @@ export const signinController = async (req: Request, res: Response) => {
         success: true,
         code: "Succesfully signed in",
         message: "Signed in",
-        data: { user, accessToken, refreshToken },
+        data: { user, naraa: "test", accessToken, refreshToken },
       });
       return;
     }
