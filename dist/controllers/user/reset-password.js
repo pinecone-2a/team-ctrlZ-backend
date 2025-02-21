@@ -8,28 +8,35 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProfile = void 0;
+exports.resetPassword = void 0;
 const __1 = require("../..");
-const updateProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { profileId } = req.params;
-    const { avatarImage, name, about, socialMediaURL } = req.body;
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, newPassword } = req.body;
     try {
-        const updatedUser = yield __1.prisma.profile.update({
+        const salt = bcrypt_1.default.genSaltSync(10);
+        const hashedPass = bcrypt_1.default.hashSync(newPassword, salt);
+        const updatedUser = yield __1.prisma.user.update({
             where: {
-                id: profileId
+                email,
             },
             data: {
-                avatarImage,
-                name,
-                about,
-                socialMediaURL,
-            }
+                password: hashedPass,
+            },
         });
-        res.json(updatedUser);
+        res.status(200).json({
+            code: "PASSWORD_UPDATED_SUCCESSFULLY",
+            message: "Password updated successfully",
+            data: updatedUser,
+        });
     }
     catch (error) {
-        res.status(500).json({ message: "Internal server error" });
+        res.send(error);
+        console.log(error);
     }
 });
-exports.updateProfile = updateProfile;
+exports.resetPassword = resetPassword;

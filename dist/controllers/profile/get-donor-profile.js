@@ -9,15 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchReceivedDonation = void 0;
+exports.fetchDonorProfile = void 0;
 const __1 = require("../..");
-const fetchReceivedDonation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const receivedDonation = yield __1.prisma.donation.findMany({
+const fetchDonorProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.donorId;
+    const donorProfile = yield __1.prisma.profile.findUnique({
         where: {
-            recipentId: id,
+            userId: id,
         },
     });
-    res.json(receivedDonation);
+    res.json(donorProfile);
 });
-exports.fetchReceivedDonation = fetchReceivedDonation;
+exports.fetchDonorProfile = fetchDonorProfile;

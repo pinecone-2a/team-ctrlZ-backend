@@ -9,26 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.editBankCard = void 0;
+exports.fetchReceivedDonation = void 0;
 const __1 = require("../..");
-const editBankCard = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const fetchReceivedDonation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const updatedCard = yield __1.prisma.bankCard.update({
+        const receivedDonation = yield __1.prisma.donation.findMany({
             where: {
-                id,
+                recipentId: id,
             },
-            data: {
-                cardNumber: "123412341234"
-            }
         });
-        res.send({
-            message: "Bankcard updated succesfully",
-            data: updatedCard
-        });
+        res.json(receivedDonation);
     }
-    catch (e) {
-        res.send(e);
+    catch (error) {
+        console.error("Error fetching donations:", error);
+        res.status(500).json({ error: "Something went wrong", details: error });
     }
 });
-exports.editBankCard = editBankCard;
+exports.fetchReceivedDonation = fetchReceivedDonation;
