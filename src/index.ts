@@ -14,12 +14,6 @@ dotenv.config();
 const PORT = 4000;
 const app = express();
 
-// app.options('*', (req, res) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   res.sendStatus(200);
-// })
 app.options("*", cors());
 app.use(
   cors({
@@ -27,7 +21,7 @@ app.use(
       "https://team-ctrl-z-frontend.vercel.app",
       "http://localhost:3000",
     ],
-    credentials: true,
+    credentials: false,
   })
 );
 app.use(express.json());
