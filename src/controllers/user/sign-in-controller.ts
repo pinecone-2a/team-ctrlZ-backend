@@ -38,7 +38,7 @@ export const signinController = async (req: Request, res: Response) => {
       console.log(accessToken);
       res.json({
         success: true,
-        code: "Succesfully signed in",
+        code: "signed in",
         message: "Signed in",
         data: { user, naraa: "test", accessToken, refreshToken },
       });
