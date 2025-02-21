@@ -13,8 +13,6 @@ dotenv.config();
 
 const PORT = 4000;
 const app = express();
-
-app.options("*", cors());
 app.use(
   cors({
     origin: [
