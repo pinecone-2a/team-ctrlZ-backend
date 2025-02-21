@@ -46,8 +46,7 @@ export const createUser = async (req: Request, res: Response) => {
         code: "SUCCESS",
         message: "User created successfully",
         data: newUser,
-        result: accessToken,
-        refreshToken: refreshToken,
+        result: { accessToken, refreshToken },
       });
     } catch (e) {
       res.send(e);
