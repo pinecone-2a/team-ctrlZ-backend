@@ -40,9 +40,7 @@ export const signinController = async (req: Request, res: Response) => {
         success: true,
         code: "Succesfully signed in",
         message: "Signed in",
-        data: user,
-        result: accessToken,
-        refreshToken: refreshToken,
+        data: { user, accessToken, refreshToken },
       });
       return;
     }
