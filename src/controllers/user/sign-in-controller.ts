@@ -35,6 +35,7 @@ export const signinController = async (req: Request, res: Response) => {
       );
 
       const accessToken = generateAccessToken(user.id);
+      console.log(accessToken);
       res.json({
         success: true,
         code: "Succesfully signed in",
