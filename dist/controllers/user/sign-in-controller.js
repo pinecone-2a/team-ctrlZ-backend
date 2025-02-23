@@ -44,20 +44,12 @@ const signinController = (req, res) => __awaiter(void 0, void 0, void 0, functio
                 expiresIn: "24h",
             });
             const accessToken = (0, generateAccessToken_1.generateAccessToken)(user.id);
-            res
-                .cookie("accessToken", accessToken, {
-                // httpOnly: true,
-                sameSite: "strict",
-            })
-                .cookie("refreshToken", refreshToken, {
-                // httpOnly: true,
-                sameSite: "strict",
-            })
-                .json({
+            console.log(accessToken);
+            res.json({
                 success: true,
-                code: "Succesfully signed in",
+                code: "signed in",
                 message: "Signed in",
-                data: user,
+                data: { user, naraa: "test", accessToken, refreshToken },
             });
             return;
         }

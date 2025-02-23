@@ -59,3 +59,10 @@ model Donation {
   donor                   User     @relation("DonorDonations", fields: [donorId], references: [id])
   recipient               User     @relation("RecipientDonations", fields: [recipentId], references: [id])
 }
+
+model Otp {
+ id        String   @id @default(nanoid())
+ email     String
+ otp       Int
+ createdAt DateTime @default(now())
+}

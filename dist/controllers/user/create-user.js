@@ -48,19 +48,13 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 expiresIn: "24h",
             });
             const accessToken = (0, generateAccessToken_1.generateAccessToken)(newUser.id);
-            res
-                .cookie("accessToken", accessToken, {
-                sameSite: "strict",
-            })
-                .cookie("refreshToken", refreshToken, {
-                sameSite: "strict",
-            })
-                .status(201)
-                .json({
+            res.status(201).json({
                 success: true,
                 code: "SUCCESS",
                 message: "User created successfully",
                 data: newUser,
+                result: accessToken,
+                refreshToken: refreshToken,
             });
         }
         catch (e) {
