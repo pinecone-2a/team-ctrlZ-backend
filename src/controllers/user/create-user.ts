@@ -41,20 +41,13 @@ export const createUser = async (req: Request, res: Response) => {
         }
       );
       const accessToken = generateAccessToken(newUser.id);
-      res
-        .cookie("accessToken", accessToken, {
-          sameSite: "strict",
-        })
-        .cookie("refreshToken", refreshToken, {
-          sameSite: "strict",
-        })
-        .status(201)
-        .json({
-          success: true,
-          code: "SUCCESS",
-          message: "User created successfully",
-          data: newUser,
-        });
+      res.status(201).json({
+        success: true,
+        code: "SUCCESS",
+        message: "User created successfully",
+        data: newUser,
+        result: { accessToken, refreshToken },
+      });
     } catch (e) {
       res.send(e);
       console.log(e);

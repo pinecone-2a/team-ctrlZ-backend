@@ -8,16 +8,18 @@ import { profileRouter } from "./routers/profile";
 import dotenv from "dotenv";
 import { donationRouter } from "./routers/donation";
 import cors from "cors";
+
 dotenv.config();
 export const prisma = new PrismaClient();
 const PORT = 4000;
 const app = express();
-
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "https://team-ctrl-z-frontend.vercel.app",
+      "http://localhost:3000",
+    ],
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 app.use(express.json());
