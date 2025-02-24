@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-export const prisma = new PrismaClient();
-import express, { Request, Response } from "express";
+
+import express from "express";
 
 import { bankCardRouter } from "./routers/bankcard";
 import { userRouter } from "./routers/user";
@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 import { donationRouter } from "./routers/donation";
 import cors from "cors";
 dotenv.config();
-
+export const prisma = new PrismaClient();
 const PORT = 4000;
 const app = express();
 
